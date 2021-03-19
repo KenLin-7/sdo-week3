@@ -1,0 +1,19 @@
+version: 2.1
+commands: 
+  install-deps:
+    steps:
+      - run: 
+          name: Install Dependencies
+          commands: | 
+            npm ci
+jobs: 
+  ci-build:
+    docker:
+      image: circle/node:lts
+    steps:
+      - checkout 
+      - install-deps
+  workflows:
+    build-and-package:
+      jobs:
+        - ci-build
