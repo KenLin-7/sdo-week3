@@ -4,16 +4,16 @@ commands:
     steps:
       - run: 
           name: Install Dependencies
-          commands: | 
+          command: | 
             npm ci
 jobs: 
   ci-build:
     docker:
-      image: circle/node:lts
+      - image: circleci/node:lts
     steps:
       - checkout 
       - install-deps
-  workflows:
+workflows:
     build-and-package:
       jobs:
         - ci-build
